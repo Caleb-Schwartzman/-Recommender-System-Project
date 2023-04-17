@@ -1,13 +1,28 @@
 
-def readData():
-    """Read data from csv file 
+
+
+
+
+
+class Reccomendation:
+
+    def __init__(self):
+        self
+
+    def readData():
+        """data from csv file 
     
     """
 
 
 
-def genreRec():
-    ""
+    def genreRec():
+        """Function 
     
     
-    ""
+    """
+
+
+
+
+
