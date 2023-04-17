@@ -5,6 +5,9 @@
 
 
 class Reccomendation:
+    """class for making reccomendation to user
+    
+    """
 
     def __init__(self):
         self
@@ -24,6 +27,16 @@ class Reccomendation:
     def match():
 
     def input():
+        """"""
+
+class Genre_Choice:
+
+
+
+    def user_input():
+
+
+
 
 
 
