@@ -25,20 +25,20 @@ class Reccomendation:
     
     """
     def match():
-
+        """"""
     def input():
+        """"""
+
+    def songChoice():
+        """"""
+    
+    def artistChoice():
         """"""
 
 class Genre_Choice:
 
-
-
     def user_input():
-
-
-
-
-
+        """"""
 
 
 def parse_args(args_list):
