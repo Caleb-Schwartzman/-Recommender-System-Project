@@ -1,4 +1,5 @@
 import argparse
+from csv import writer
 
 
 
@@ -35,10 +36,35 @@ class Reccomendation:
     def artistChoice():
         """"""
 
-class Genre_Choice:
-
-    def user_input():
+def user_input():
         """"""
+        # f = open("Recommendation.csv", "a")
+        
+        # f.write(Name)
+        # f.write(Genre)
+        # f.write(Song)
+
+        with open('Recommendation.csv', 'a') as file_object:
+            Name = input("What is your name: ")
+            Genre = input("What is your favorite genre? ")
+            Song = input("What is your favorite song within that genre? ")  
+            List = [Name, Genre, Song]
+
+
+            writer_object = writer(file_object)
+
+            writer_object.writerow(List)
+    
+            file_object.close()
+
+
+
+if __name__ == "__main__":
+    user_input()
+
+
+
+
 
 
 def parse_args(args_list):
