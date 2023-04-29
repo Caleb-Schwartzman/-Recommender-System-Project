@@ -1,5 +1,5 @@
 import argparse
-from csv import writer
+import csv
 
 
 
@@ -10,13 +10,19 @@ class Reccomendation:
     
     """
 
-    def __init__(self):
-        self
+    def __init__(self, genre):
+        self.genre = genre
 
-    def readData():
-        """data from csv file 
-    
-    """
+    def readData(path):
+        """Reads data from csv file 
+        
+        Args:
+            path - csv file path passed in through terminal
+
+        """
+        with open(path, 'r') as csvFile:
+            data = csv.reader(csvFile, delimiter = " ")
+            
 
 
 
@@ -51,7 +57,7 @@ def user_input():
             List = [Name, Genre, Song]
 
 
-            writer_object = writer(file_object)
+            writer_object = csv.writer(file_object)
 
             writer_object.writerow(List)
     
