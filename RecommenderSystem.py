@@ -1,77 +1,75 @@
 import argparse
 import csv
+import sys
 
-
-
-
-
-class Reccomendation:
-    """class for making reccomendation to user
-    
+class Recommendation:
     """
-
-    def __init__(self, genre):
-        self.genre = genre
-
-    def readData(path):
-        """Reads data from csv file 
+    Class that stores the CSV data containing a users name, favorite song, and the genre
+    of that song
+    
+    Attributes:
+        genre - the favorite genre of the user to find matches
+    """
+    def __init__(self, path):
+        """
+        Reads data from csv file 
         
         Args:
             path - csv file path passed in through terminal
-
         """
-        with open(path, 'r') as csvFile:
-            data = csv.reader(csvFile, delimiter = " ")
+        self.path = path
             
-
-
-
-    def genreRec():
-        """Function 
-    
-    
-    """
-    def match():
-        """"""
-    def input():
-        """"""
-
-    def songChoice():
-        """"""
-    
-    def artistChoice():
-        """"""
-
-def user_input():
-        """"""
+        
+    def user_input(self):
+        """
+        Ask for user input and then writes the user inputted data
+        into CSV file to continue adding to the data
+        
+        Returns:
+            Genre - the user's favorite genre from the inputted answers
+        """
         # f = open("Recommendation.csv", "a")
         
         # f.write(Name)
         # f.write(Genre)
         # f.write(Song)
+        # f.write(Artist)
 
         with open('Recommendation.csv', 'a') as file_object:
             Name = input("What is your name: ")
             Genre = input("What is your favorite genre? ")
             Song = input("What is your favorite song within that genre? ")  
-            List = [Name, Genre, Song]
+            Artist = input("Who is the song made by? ")
+            List = [Name, Genre, Song, Artist]
 
-
+            #Writes user answers to the csv
             writer_object = csv.writer(file_object)
-
             writer_object.writerow(List)
-    
             file_object.close()
-
-
-
-if __name__ == "__main__":
-    user_input()
-
-
-
-
-
+            
+        self.genre = Genre
+    
+    def match(self):
+        """
+        Searches for matches based on the user's favorite genre
+        """
+        with open(self.path, 'r') as csvFile:
+            data = csv.reader(csvFile)
+            #skip header
+            next(data)
+            matchingSongs = []
+            #Find matching genres 
+            for row in data:
+                if row[1] == self.genre:
+                    songTitle = row[2]
+                    artist = row[3]
+                    matchingSongs.append(f"{songTitle} - {artist}")
+            
+        return matchingSongs
+                    
+                    
+def main(path):
+    data = Recommendation(path)
 
 def parse_args(args_list):
     """
@@ -92,3 +90,8 @@ def parse_args(args_list):
     
     return args
 
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    #calls main function using the path passed in the terminal as argument
+    main(args.csv_file)
+    
