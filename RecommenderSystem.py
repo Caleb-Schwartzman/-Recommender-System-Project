@@ -52,6 +52,10 @@ class Recommendation:
     def match(self):
         """
         Searches for matches based on the user's favorite genre
+        
+        Returns:
+            matchingSongs - list of strings containing matching songs
+            that share the same genre as the user's favorite
         """
         with open(self.path, 'r') as csvFile:
             data = csv.reader(csvFile)
