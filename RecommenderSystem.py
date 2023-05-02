@@ -73,7 +73,14 @@ class Recommendation:
                     
                     
 def main(path):
+    #creates Recommendation object
     data = Recommendation(path)
+    #calls the user_input function to prompt the user with questions
+    data.user_input()
+    #calls match function to go through csv and find matching songs
+    matches = data.match()
+    print(matches)
+    
 
 def parse_args(args_list):
     """
