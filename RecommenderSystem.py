@@ -65,8 +65,8 @@ class Recommendation:
             #Find matching genres 
             for row in data:
                 if row[1] == self.genre:
-                    songTitle = row[2]
-                    artist = row[3]
+                    songTitle = row[1]
+                    artist = row[2]
                     matchingSongs.append(f"{songTitle} - {artist}")
             
         return matchingSongs
