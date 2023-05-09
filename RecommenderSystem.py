@@ -10,6 +10,7 @@ class Recommendation:
     Attributes:
         genre - the favorite genre of the user to find matches
     """
+    userPickedGenre = ""
     def __init__(self, path):
         """
         Reads data from csv file 
@@ -37,19 +38,24 @@ class Recommendation:
 
         with open('Recommendation.csv', 'a') as file_object:
             Name = input("What is your name: ")
-            Genre = input("What is your favorite genre? ")
+            self.userPickedGenre = input("What is your favorite genre? ")
             Song = input("What is your favorite song within that genre? ")  
             Artist = input("Who is the song made by? ")
-            List = [Name, Genre, Song, Artist]
+            List = [Name, self.userPickedGenre, Song, Artist]
 
             #Writes user answers to the csv
             writer_object = csv.writer(file_object)
             writer_object.writerow(List)
             file_object.close()
             
-        self.genre = Genre
+        # self.genre = Genre
     
-    def match(self):
+
+
+
+
+
+    def match(self, genre):
         """
         Searches for matches based on the user's favorite genre
         
@@ -64,7 +70,8 @@ class Recommendation:
             matchingSongs = []
             #Find matching genres 
             for row in data:
-                if row[1] == self.genre:
+                # print(row)
+                if row[0] == genre:
                     songTitle = row[1]
                     artist = row[2]
                     matchingSongs.append(f"{songTitle} - {artist}")
@@ -94,8 +101,16 @@ def main(path):
     #calls the user_input function to prompt the user with questions
     data.user_input()
     #calls match function to go through csv and find matching songs
-    matches = data.match()
-    print(matches)
+    askUserSearch = input("Do you want to list songs that match your Genre?")
+   
+    if askUserSearch == "Yes":
+        # print(data.userPickedGenre)
+        matches = data.match(data.userPickedGenre)
+        print(matches)
+
+
+
+
     
 
 def parse_args(args_list):
