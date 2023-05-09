@@ -70,7 +70,23 @@ class Recommendation:
                     matchingSongs.append(f"{songTitle} - {artist}")
             
         return matchingSongs
-                    
+    
+    #def friend(self):
+    #    with open(self.path, 'r') as csvFile:
+    #        data = csv.reader(csvFile)
+    #        #skip header
+    #        next(data)
+    #        match_friend = []
+    #        for row in data:
+    #            if row[4] == self.name:
+    #                friendName = row[4]
+    #                song = row[2]
+    #                match_friend.append(f"{match_friend}'s favorite song is {song}") 
+    #    return match_friend
+    
+    
+    # searches for song name from users imput of friend
+    #need to make input function for this                
                     
 def main(path):
     #creates Recommendation object
