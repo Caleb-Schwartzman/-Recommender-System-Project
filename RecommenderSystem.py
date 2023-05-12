@@ -69,22 +69,20 @@ class Recommendation:
             
         return matchingSongs
     
-    #def friend(self):
-    #    with open(self.path, 'r') as csvFile:
-    #        data = csv.reader(csvFile)
-    #        #skip header
-    #        next(data)
-    #        match_friend = []
-    #        for row in data:
-    #            if row[4] == self.name:
-    #                friendName = row[4]
-    #                song = row[2]
-    #                match_friend.append(f"{match_friend}'s favorite song is {song}") 
-    #    return match_friend
-    
-    
-    # searches for song name from users imput of friend
-    #need to make input function for this                
+    def friend(self, nameFriend):
+        with open(self.path, 'r') as csvFile:
+            data = csv.reader(csvFile)
+            #skip header
+            next(data)
+            match_friend = []
+            for row in data:
+                if row[3].lower() == nameFriend.lower():
+                    name = row[3]
+                    songTitle = row[1]
+                    artist = row[2]
+                    
+                    match_friend.append(f"{name}'s favorite song is {songTitle} by {artist}") 
+        return match_friend               
                     
 def main(path):
     #creates Recommendation object
@@ -99,9 +97,15 @@ def main(path):
         print("Here are some songs you might like: ")
         for song in matches:
             print(song)
+
+     # friends = Recommendation.friend(data)
+    # print(friends)
+    askUserFriend = input("Do you want to see your friends favorite song? If so type their name.")
+    guy = data.friend(askUserFriend)
+    if guy is not None:
+        print(guy)
     else:
-        sys.exit()
-    
+        print("friend not found")
 
 def parse_args(args_list):
     """
