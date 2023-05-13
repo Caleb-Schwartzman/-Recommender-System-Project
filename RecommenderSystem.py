@@ -9,6 +9,7 @@ class Recommendation:
     
     Attributes:
         genre - the favorite genre of the user to find matches
+        path - dataset used by program to get favorite songs
     """
     def __init__(self, path):
         """
@@ -25,8 +26,8 @@ class Recommendation:
         Ask for user input and then writes the user inputted data
         into CSV file to continue adding to the data
         
-        Returns:
-            Genre - the user's favorite genre from the inputted answers
+        Side Effects:
+            Writes list to csv file
         """
         with open('Recommendation.csv', 'a', newline='') as file_object:
             Genre = input("What is your favorite genre? ")
@@ -70,6 +71,15 @@ class Recommendation:
         return matchingSongs
     
     def friend(self, nameFriend):
+        """
+        Searches for friend's name in the csv and returns the matching song
+        
+        Args:
+            nameFriend - friends name that was user inputted
+            
+        Returns:
+            match_friend - list with friend's favorite song
+        """
         with open(self.path, 'r') as csvFile:
             data = csv.reader(csvFile)
             #skip header
@@ -85,27 +95,36 @@ class Recommendation:
         return match_friend               
                     
 def main(path):
-    #creates Recommendation object
+    """
+    Main function that creates recommendation class object and calls the functions within it while also
+    asking if user wants a recommendation of songs or/and their friends favorite song
+    
+    Args:
+        path - path is the csv file being used as the dataset
+        
+    Side Effects:
+        Prints a list of songs to the user to recommend if they request and also prints their friend's favorite
+        song at their request as well    
+    """
+    
     data = Recommendation(path)
     #calls the user_input function to prompt the user with questions
     data.user_input()
     #calls match function to go through csv and find matching songs
     matches = data.match()
     askUserSearch = input("Do you want to list songs that match your Genre? ")
+    askUserFriend = input("Do you want to see your friends favorite song? If so type their name: ")
    
     if askUserSearch == "Yes":
         print("Here are some songs you might like: ")
         for song in matches:
             print(song)
 
-     # friends = Recommendation.friend(data)
-    # print(friends)
-    askUserFriend = input("Do you want to see your friends favorite song? If so type their name.")
-    guy = data.friend(askUserFriend)
-    if guy is not None:
-        print(guy)
+    friendSong = data.friend(askUserFriend)
+    if not friendSong:
+        print("Friend not found")
     else:
-        print("friend not found")
+        print(friendSong[0])
 
 def parse_args(args_list):
     """
