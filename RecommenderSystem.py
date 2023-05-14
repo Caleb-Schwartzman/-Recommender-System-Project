@@ -94,7 +94,7 @@ class Recommendation:
             nameFriend - friends name that was user inputted
             
         Returns:
-            match_friend - list with friend's favorite song
+            match_friend - list with friend's name favorite song and who it is by
         """
         with open(self.path, 'r') as csvFile:
             data = csv.reader(csvFile)
