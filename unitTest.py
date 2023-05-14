@@ -38,12 +38,32 @@ class RecommendationTest(unittest.TestCase):
         name within csv file and return her song
         """
         self.assertEqual(self.recommendation.friend("Mary"), ["Mary's favorite song is Red by Taylor Swift"])
+
+    def askFavoriteSong(self):
+        """
+        To test this function, you can type what your favorite genre is and see if it matches up with the next question.
+        Enter your favorite genre and then you will be asked to input your favorite song within that genre. If the 
+        genre you entered matches the genre mentioned in the first question then the function is working correctly.
         
+        """    
+            
+        self.assertEqual(self.recommendation.askFavoriteSong("Rock"), "What is your favorite song within Rock?" )
+        self.assertEqual(self.recommendation.askFavoriteSong("."), "What is your favorite song within .?" )
+        self.assertEqual(self.recommendation.askFavoriteSong("dsfdfdsfsd"), "What is your favorite song within dsfdfdsfsd?" )
+
+
     #def test_user_input():
         """
         To test user_input, the user must input their own items when prompted and running the main RecommenderSystem.py file
         and ensure that based on what they input, it is clearly inputted into the csv file in the same format as every other song.
         """
-        
+
+    #def test_recommendation_init(self):
+        """
+        To test the __init__ function, pass in an invalid path in the terminal. For example, if you were to type in 
+        "python recommend.py Recommendation" in order to run the code on the terminal, an error will show up. You need to 
+        be specific with the file path as that determines where the output is being written
+        """
+    
 if __name__ == '__main__':
     unittest.main()

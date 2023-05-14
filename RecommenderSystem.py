@@ -20,6 +20,15 @@ class Recommendation:
         """
         self.path = path
             
+    def askFavoriteSong(self, Genre):
+        """ 
+        Takes two parameters and returns a string
+
+        Returns:
+        It returns a question with the genre they input
+        
+        """
+        return "What is your favorite song within "+Genre+"?" 
         
     def user_input(self):
         """
@@ -30,9 +39,16 @@ class Recommendation:
             Writes list to csv file
         """
         with open('Recommendation.csv', 'a', newline='') as file_object:
+            print("\t\t\t\t\t * * * ")
+            print("\t\tWe're going to give you a list of questions to")
+            print("\t\tanswer about your favorite type of music.")
+            print("\t\tBased on your responses, you will receive corresponding results.")
+            print("\t\t\t\t\t * * * ")
+
             Genre = input("What is your favorite genre? ")
             self.genre = Genre
-            Song = input("What is your favorite song within that genre? ")  
+
+            Song = input(self.askFavoriteSong(Genre))  
             Artist = input("Who is the song made by? ")
             Name = input("What is your name: ")
             self.name = Name
